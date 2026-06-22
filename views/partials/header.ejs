@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Meta Tags -->
+  <title><%= typeof title !== 'undefined' ? title : 'BVN Modulars | Factory-Made Modular Furniture Rajahmundry' %></title>
+  <meta name="description" content="<%= typeof metaDescription !== 'undefined' ? metaDescription : 'Premium factory-made modular kitchens, wardrobes, and interior solutions in Rajahmundry, Andhra Pradesh. Built with 0.1mm CNC precision and moisture-proof materials.' %>">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+  
+  <!-- External CSS -->
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <!-- FontAwesome for icons (or inline SVGs, we will use SVGs for performance, but we can load a clean icon font or SVGs directly) -->
+  
+  <!-- Structured Data for LocalBusiness SEO (Homepage only) -->
+  <% if (typeof isHome !== 'undefined' && isHome) { %>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "BVN Modulars",
+    "image": "/images/project_kitchen.webp",
+    "@id": "https://bvnmodulars.com/#localbusiness",
+    "url": "https://bvnmodulars.com",
+    "telephone": "+91 99999 99999",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Industrial Estate, Rajahmundry",
+      "addressLocality": "Rajahmundry",
+      "addressRegion": "Andhra Pradesh",
+      "postalCode": "533101",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 17.0005,
+      "longitude": 81.8040
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "opens": "09:00",
+      "closes": "20:00"
+    },
+    "sameAs": [
+      "https://www.facebook.com/bvnmodulars",
+      "https://www.instagram.com/bvnmodulars"
+    ]
+  }
+  </script>
+  <% } %>
+</head>
+<body>
+
+  <!-- Sticky Navigation Header -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <div class="logo-wrapper">
+        <a href="/">
+          <img src="/images/logo.png" alt="BVN Modulars" class="site-logo">
+        </a>
+      </div>
+      
+      <button class="hamburger-toggle" id="menu-toggle" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <nav class="main-nav" id="main-nav">
+        <ul>
+          <li class="<%= activePage === 'home' ? 'active' : '' %>"><a href="/">Home</a></li>
+          <li class="<%= activePage === 'about' ? 'active' : '' %>"><a href="/about">About Us</a></li>
+          <li class="<%= activePage === 'services' ? 'active' : '' %>"><a href="/services">Services</a></li>
+          <li class="<%= activePage === 'projects' ? 'active' : '' %>"><a href="/projects">Projects</a></li>
+          <li class="<%= activePage === 'factory-tour' ? 'active' : '' %>"><a href="/factory-tour">Factory Tour</a></li>
+          <li class="<%= activePage === 'materials' ? 'active' : '' %>"><a href="/materials">Materials</a></li>
+          <li class="<%= activePage === 'testimonials' ? 'active' : '' %>"><a href="/testimonials">Testimonials</a></li>
+          <li class="<%= activePage === 'blog' ? 'active' : '' %>"><a href="/blog">Blog</a></li>
+          <li class="<%= activePage === 'contact' ? 'active' : '' %>"><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>

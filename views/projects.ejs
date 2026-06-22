@@ -1,0 +1,67 @@
+<%- include('partials/header') %>
+
+<section class="blog-post-header">
+  <div class="container">
+    <h1>Project Gallery</h1>
+    <div class="blog-post-meta">Real Project Photographs Completed in Rajahmundry & AP</div>
+  </div>
+</section>
+
+<section class="gallery-section">
+  <div class="container">
+    <!-- Category Filter Bar (Spec: Walnut Brown active state, Off-White inactive, scrolls horizontally on mobile) -->
+    <div class="gallery-filter-bar" style="overflow-x: auto; white-space: nowrap; padding-bottom: 1rem;">
+      <button class="filter-btn active" data-filter="all">All Projects</button>
+      <button class="filter-btn" data-filter="modular-kitchens">Modular Kitchens</button>
+      <button class="filter-btn" data-filter="wardrobes">Wardrobes</button>
+      <button class="filter-btn" data-filter="tv-units">TV Units</button>
+      <button class="filter-btn" data-filter="bedrooms">Bedrooms</button>
+      <button class="filter-btn" data-filter="crockery-units">Crockery Units</button>
+      <button class="filter-btn" data-filter="office-interiors">Office Interiors</button>
+    </div>
+
+    <!-- Gallery Grid (Spec: Large cards min 400px height on desktop, mobile full width) -->
+    <div class="projects-grid" style="grid-template-columns: repeat(3, 1fr);">
+      <% projects.forEach(project => { %>
+        <div class="project-card filterable lightbox-trigger" 
+             style="height: 400px;" 
+             data-category="<%= project.category %>" 
+             data-img="<%= project.image %>" 
+             data-title="<%= project.title %>"
+             data-category-label="<%= project.category.replace('-', ' ').toUpperCase() %>">
+          <img src="<%= project.image %>" alt="<%= project.title %> - BVN Modulars Rajahmundry" class="project-img" style="height: 100%; width: 100%; object-fit: cover;">
+          <!-- Spec: Hover overlay Oxblood (#280E0D) at 70% opacity with project details in white text -->
+          <div class="project-overlay" style="background-color: rgba(40, 14, 13, 0.7);">
+            <span class="project-category" style="color: var(--accent-amber);"><%= project.category.replace('-', ' ') %></span>
+            <h3 class="project-title"><%= project.title %></h3>
+            <div class="project-meta">
+              <span class="project-location"><%= project.location %></span>
+              <span class="project-link" style="color: var(--accent-amber);">View Full-Screen &rarr;</span>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+    
+    <div style="text-align: center; margin-top: 4rem;">
+      <p style="font-weight: 600; color: var(--secondary-walnut); margin-bottom: 1.5rem;">Love this design? Ask us to create it for you &rarr;</p>
+      <a href="https://wa.me/919999999999?text=Hi%20BVN%20Modulars!%20I'm%20browsing%20your%20project%20gallery%20and%20want%20to%20discuss%20a%20similar%20design." class="btn btn-primary" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox Container (Spec: Opens a lightbox in full-screen. No page reload. Background dimmed to near-black) -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" aria-label="Close lightbox">&times;</button>
+  <button class="lightbox-prev" id="lightbox-prev" aria-label="Previous image">&lsaquo;</button>
+  <button class="lightbox-next" id="lightbox-next" aria-label="Next image">&rsaquo;</button>
+  <div class="lightbox-content-wrapper">
+    <img src="" alt="Enlarged Project Photo" class="lightbox-img">
+    <div class="lightbox-details">
+      <h4 class="lightbox-title"></h4>
+      <span class="lightbox-category"></span>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

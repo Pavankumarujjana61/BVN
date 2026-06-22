@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Banners | BVN Modulars CMS</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="admin-logo-wrapper" style="text-align: center; margin-bottom: 2rem;">
+        <img src="/images/logo.png" alt="BVN Modulars" class="admin-sidebar-logo" style="max-height: 50px; width: auto; object-fit: contain;">
+      </div>
+      <ul class="admin-menu">
+        <li><a href="/admin">Dashboard</a></li>
+        <li><a href="/admin/projects">Manage Projects</a></li>
+        <li><a href="/admin/testimonials">Manage Reviews</a></li>
+        <li><a href="/admin/pricing">Manage Pricing</a></li>
+        <li><a href="/admin/blogs">Manage Blogs</a></li>
+        <li class="active"><a href="/admin/banners">Manage Banners</a></li>
+        <li><a href="/admin/enquiries">Enquiries</a></li>
+        <li><a href="/admin/settings">Settings</a></li>
+      </ul>
+      <div class="admin-logout">
+        <a href="/" target="_blank" style="color: var(--bg-offwhite); display: block; margin-bottom: 1rem;">View Website &rarr;</a>
+        <a href="/admin/logout">Logout</a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+      <header class="admin-header">
+        <h1>Manage Homepage Banners</h1>
+        <div>Administrator</div>
+      </header>
+
+      <% if (typeof success !== 'undefined' && success) { %>
+        <div class="alert alert-success"><%= success %></div>
+      <% } %>
+
+      <div class="admin-form-grid" style="grid-template-columns: 1.2fr 1.8fr; align-items: start;">
+        <!-- Edit / Add Banner Form -->
+        <div class="admin-card">
+          <% if (typeof editBanner !== 'undefined' && editBanner) { %>
+            <h3 style="margin-bottom: 1.5rem; color: var(--primary-oxblood);">Edit Homepage Banner</h3>
+            <form action="/admin/banners/edit/<%= editBanner.id %>" method="POST" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="title">Banner Title / Heading *</label>
+                <input type="text" id="title" name="title" class="form-control" value="<%= editBanner.title %>" placeholder="e.g. Factory-Made Modular Interiors" required>
+              </div>
+
+              <div class="form-group">
+                <label for="subtitle">Banner Subtitle *</label>
+                <textarea id="subtitle" name="subtitle" class="form-control" style="min-height: 70px;" placeholder="e.g. Custom Kitchens, Wardrobes, TV Units..." required><%= editBanner.subtitle %></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="bannerImage">Banner Background Image (Leave empty to keep current)</label>
+                <input type="file" id="bannerImage" name="bannerImage" class="form-control" accept="image/*">
+                <div style="margin-top: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="font-size: 0.8rem; color: var(--secondary-walnut);">Current Image:</span>
+                  <img src="<%= editBanner.image %>" alt="" style="width: 80px; height: 45px; object-fit: cover; border-radius: 4px; border: 1.5px solid var(--secondary-walnut);">
+                </div>
+              </div>
+
+              <div style="background-color: var(--bg-offwhite); padding: 1rem; border-radius: 6px; margin: 1.5rem 0;">
+                <h4 style="font-family: 'Montserrat'; font-weight: 700; color: var(--primary-oxblood); font-size: 0.9rem; margin-bottom: 1rem;">Primary Action Button (Button 1)</h4>
+                <div class="form-group">
+                  <label for="btn1Text">Button Text</label>
+                  <input type="text" id="btn1Text" name="btn1Text" class="form-control" value="<%= editBanner.btn1Text %>" placeholder="e.g. Get Free 3D Design Consultation">
+                </div>
+                <div class="form-group" style="margin-top: 0.75rem;">
+                  <label for="btn1Url">Button URL</label>
+                  <input type="text" id="btn1Url" name="btn1Url" class="form-control" value="<%= editBanner.btn1Url %>" placeholder="e.g. #contact-form">
+                </div>
+              </div>
+
+              <div style="background-color: var(--bg-offwhite); padding: 1rem; border-radius: 6px; margin: 1.5rem 0;">
+                <h4 style="font-family: 'Montserrat'; font-weight: 700; color: var(--primary-oxblood); font-size: 0.9rem; margin-bottom: 1rem;">Secondary Action Button (Button 2)</h4>
+                <div class="form-group">
+                  <label for="btn2Text">Button Text</label>
+                  <input type="text" id="btn2Text" name="btn2Text" class="form-control" value="<%= editBanner.btn2Text %>" placeholder="e.g. View Our Projects">
+                </div>
+                <div class="form-group" style="margin-top: 0.75rem;">
+                  <label for="btn2Url">Button URL</label>
+                  <input type="text" id="btn2Url" name="btn2Url" class="form-control" value="<%= editBanner.btn2Url %>" placeholder="e.g. /projects">
+                </div>
+              </div>
+
+              <button type="submit" class="btn form-submit-btn">Update Banner</button>
+              <a href="/admin/banners" class="btn btn-secondary" style="display: block; text-align: center; text-decoration: none; margin-top: 0.75rem; padding: 0.75rem 1rem; border: 1px solid var(--secondary-walnut); border-radius: 4px; color: var(--secondary-walnut); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.9rem; background: transparent;">Cancel Edit</a>
+            </form>
+          <% } else { %>
+            <h3 style="margin-bottom: 1.5rem; color: var(--primary-oxblood);">Add New Homepage Banner</h3>
+            <form action="/admin/banners/add" method="POST" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="title">Banner Title / Heading *</label>
+                <input type="text" id="title" name="title" class="form-control" placeholder="e.g. Factory-Made Modular Interiors" required>
+              </div>
+
+              <div class="form-group">
+                <label for="subtitle">Banner Subtitle *</label>
+                <textarea id="subtitle" name="subtitle" class="form-control" style="min-height: 70px;" placeholder="e.g. Custom Kitchens, Wardrobes, TV Units..." required></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="bannerImage">Banner Background Image *</label>
+                <input type="file" id="bannerImage" name="bannerImage" class="form-control" accept="image/*" required>
+                <p style="font-size: 0.8rem; color: var(--secondary-walnut); margin-top: 0.25rem;">High resolution landscape image (1920x800), under 500KB preferred.</p>
+              </div>
+
+              <div style="background-color: var(--bg-offwhite); padding: 1rem; border-radius: 6px; margin: 1.5rem 0;">
+                <h4 style="font-family: 'Montserrat'; font-weight: 700; color: var(--primary-oxblood); font-size: 0.9rem; margin-bottom: 1rem;">Primary Action Button (Button 1)</h4>
+                <div class="form-group">
+                  <label for="btn1Text">Button Text</label>
+                  <input type="text" id="btn1Text" name="btn1Text" class="form-control" placeholder="e.g. Get Free 3D Design Consultation">
+                </div>
+                <div class="form-group" style="margin-top: 0.75rem;">
+                  <label for="btn1Url">Button URL</label>
+                  <input type="text" id="btn1Url" name="btn1Url" class="form-control" placeholder="e.g. #contact-form">
+                </div>
+              </div>
+
+              <div style="background-color: var(--bg-offwhite); padding: 1rem; border-radius: 6px; margin: 1.5rem 0;">
+                <h4 style="font-family: 'Montserrat'; font-weight: 700; color: var(--primary-oxblood); font-size: 0.9rem; margin-bottom: 1rem;">Secondary Action Button (Button 2)</h4>
+                <div class="form-group">
+                  <label for="btn2Text">Button Text</label>
+                  <input type="text" id="btn2Text" name="btn2Text" class="form-control" placeholder="e.g. View Our Projects">
+                </div>
+                <div class="form-group" style="margin-top: 0.75rem;">
+                  <label for="btn2Url">Button URL</label>
+                  <input type="text" id="btn2Url" name="btn2Url" class="form-control" placeholder="e.g. /projects">
+                </div>
+              </div>
+
+              <button type="submit" class="btn form-submit-btn">Save Banner</button>
+            </form>
+          <% } %>
+        </div>
+
+        <!-- Banner Listing -->
+        <div class="admin-card">
+          <h3 style="margin-bottom: 1.5rem; color: var(--primary-oxblood);">Current Slider Banners</h3>
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Preview</th>
+                <th>Heading / Text</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% banners.forEach((banner, idx) => { %>
+                <tr>
+                  <td>
+                    <img src="<%= banner.image %>" alt="" style="width: 100px; height: 55px; object-fit: cover; border-radius: 4px; border: 1px solid var(--bg-offwhite);">
+                  </td>
+                  <td>
+                    <span style="font-size: 0.8rem; font-weight: bold; color: var(--primary-oxblood);">Slide <%= idx + 1 %>:</span><br>
+                    <strong><%= banner.title %></strong><br>
+                    <span style="font-size: 0.8rem; color: var(--secondary-walnut);"><%= banner.subtitle.substring(0, 70) %>...</span>
+                  </td>
+                  <td>
+                    <div style="display: flex; gap: 0.5rem; align-items: center;">
+                      <a href="/admin/banners?edit=<%= banner.id %>" class="btn btn-primary btn-sm" style="text-decoration: none; display: inline-block;">Edit</a>
+                      <form action="/admin/banners/delete/<%= banner.id %>" method="POST" onsubmit="return confirm('Are you sure you want to delete this banner slide?');" style="margin: 0;">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                      </form>
+                    </div>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+</body>
+</html>

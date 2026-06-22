@@ -1,0 +1,50 @@
+[
+  {
+    "id": "project-kitchen-acrylic",
+    "title": "Premium Acrylic L-Shape Kitchen",
+    "category": "modular-kitchens",
+    "location": "Rajahmundry",
+    "image": "/images/project_kitchen.webp",
+    "description": "Stunning high-gloss acrylic modular kitchen in L-shape layout with premium soft-close Tandem boxes, profile handles, and integrated chimney."
+  },
+  {
+    "id": "project-wardrobe-sliding",
+    "title": "Modern Sliding Wardrobe with Loft",
+    "category": "wardrobes",
+    "location": "Rajahmundry",
+    "image": "/images/project_wardrobe.webp",
+    "description": "Sleek 3-door sliding wardrobe with customized internal layouts, drawer organizers, and overhead loft cabinets for maximum storage."
+  },
+  {
+    "id": "project-tv-floating",
+    "title": "Floating TV Console with Backlit Louvers",
+    "category": "tv-units",
+    "location": "Rajahmundry",
+    "image": "/images/project_tv_unit.webp",
+    "description": "Elegant floating media console with Charcoal louver paneling, Warm Amber LED strip backlighting, and wood drawer fronts."
+  },
+  {
+    "id": "project-bedroom-suite",
+    "title": "Master Bedroom Furniture Suite",
+    "category": "bedrooms",
+    "location": "Rajahmundry",
+    "image": "/images/project_bedroom.webp",
+    "description": "Complete bedroom ensemble including a King size bed with customized headboard, bedside tables, and a dressing vanity unit."
+  },
+  {
+    "id": "project-crockery-showcase",
+    "title": "Crockery Unit & Kitchen Display Cabinet",
+    "category": "crockery-units",
+    "location": "Rajahmundry",
+    "image": "/images/project_crockery.webp",
+    "description": "Tall display cabinet with glass doors, internal spot lighting, and bottom storage drawers for premium dining room elegance."
+  },
+  {
+    "id": "project-office-workstation",
+    "title": "Ergonomic Corporate Office Interiors",
+    "category": "office-interiors",
+    "location": "Rajahmundry",
+    "image": "/images/project_office.webp",
+    "description": "Efficient and clean office setup featuring modular workstations, executive desks, conference tables, and storage walls."
+  }
+]

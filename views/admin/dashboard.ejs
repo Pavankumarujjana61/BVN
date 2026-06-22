@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | BVN Modulars</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="admin-logo-wrapper" style="text-align: center; margin-bottom: 2rem;">
+        <img src="/images/logo.png" alt="BVN Modulars" class="admin-sidebar-logo" style="max-height: 50px; width: auto; object-fit: contain;">
+      </div>
+      <ul class="admin-menu">
+        <li class="active"><a href="/admin">Dashboard</a></li>
+        <li><a href="/admin/projects">Manage Projects</a></li>
+        <li><a href="/admin/testimonials">Manage Reviews</a></li>
+        <li><a href="/admin/pricing">Manage Pricing</a></li>
+        <li><a href="/admin/blogs">Manage Blogs</a></li>
+        <li><a href="/admin/banners">Manage Banners</a></li>
+        <li><a href="/admin/enquiries">Enquiries</a></li>
+        <li><a href="/admin/settings">Settings</a></li>
+      </ul>
+      <div class="admin-logout">
+        <a href="/" target="_blank" style="color: var(--bg-offwhite); display: block; margin-bottom: 1rem;">View Website &rarr;</a>
+        <a href="/admin/logout">Logout</a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+      <header class="admin-header">
+        <h1>Dashboard Overview</h1>
+        <div>Welcome, Administrator</div>
+      </header>
+
+      <div class="admin-card" style="margin-bottom: 2rem;">
+        <h3 style="margin-bottom: 1.5rem; color: var(--primary-oxblood);">Content Management Overview</h3>
+        <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.25rem;">
+          <div style="background-color: var(--bg-offwhite); padding: 1.5rem; border-radius: 6px; text-align: center;">
+            <div style="font-size: 2rem; font-weight: 700; color: var(--primary-oxblood);"><%= stats.projectsCount %></div>
+            <div style="font-size: 0.85rem; font-weight: 600;">Projects</div>
+          </div>
+          <div style="background-color: var(--bg-offwhite); padding: 1.5rem; border-radius: 6px; text-align: center;">
+            <div style="font-size: 2rem; font-weight: 700; color: var(--primary-oxblood);"><%= stats.testimonialsCount %></div>
+            <div style="font-size: 0.85rem; font-weight: 600;">Reviews</div>
+          </div>
+          <div style="background-color: var(--bg-offwhite); padding: 1.5rem; border-radius: 6px; text-align: center;">
+            <div style="font-size: 2rem; font-weight: 700; color: var(--primary-oxblood);"><%= stats.blogsCount %></div>
+            <div style="font-size: 0.85rem; font-weight: 600;">Blog Posts</div>
+          </div>
+          <div style="background-color: var(--bg-offwhite); padding: 1.5rem; border-radius: 6px; text-align: center;">
+            <div style="font-size: 2rem; font-weight: 700; color: var(--primary-oxblood);"><%= stats.bannersCount %></div>
+            <div style="font-size: 0.85rem; font-weight: 600;">Slider Banners</div>
+          </div>
+          <div style="background-color: var(--bg-offwhite); padding: 1.5rem; border-radius: 6px; text-align: center;">
+            <div style="font-size: 2rem; font-weight: 700; color: var(--primary-oxblood);"><%= stats.enquiriesCount %></div>
+            <div style="font-size: 0.85rem; font-weight: 600;">Enquiries</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="admin-card">
+        <h3 style="margin-bottom: 1rem; color: var(--primary-oxblood);">Recent Customer Enquiries</h3>
+        <% if (recentEnquiries.length === 0) { %>
+          <p>No enquiries received yet.</p>
+        <% } else { %>
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>City</th>
+                <th>Service Interested</th>
+                <th>Message</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% recentEnquiries.forEach(enquiry => { %>
+                <tr>
+                  <td><%= new Date(enquiry.date).toLocaleDateString() %></td>
+                  <td><strong><%= enquiry.name %></strong></td>
+                  <td><%= enquiry.phone %></td>
+                  <td><%= enquiry.city %></td>
+                  <td><%= enquiry.service %></td>
+                  <td><%= enquiry.message || '-' %></td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+          <div style="margin-top: 1.5rem; text-align: right;">
+            <a href="/admin/enquiries" class="btn btn-outline btn-sm">View All Enquiries &rarr;</a>
+          </div>
+        <% } %>
+      </div>
+    </main>
+  </div>
+
+</body>
+</html>

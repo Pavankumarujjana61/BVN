@@ -1,0 +1,45 @@
+[
+  {
+    "id": "1bhk-starter",
+    "name": "1BHK Starter Package",
+    "startingPrice": "1.25",
+    "priceUnit": "Lakhs",
+    "inclusions": [
+      "Modular kitchen (straight)",
+      "1 wardrobe",
+      "Basic hardware",
+      "Standard laminate selection"
+    ],
+    "isPopular": false
+  },
+  {
+    "id": "2bhk-value",
+    "name": "2BHK Value Package",
+    "startingPrice": "2.50",
+    "priceUnit": "Lakhs",
+    "inclusions": [
+      "L-shape kitchen",
+      "2 wardrobes",
+      "TV unit",
+      "Crockery unit",
+      "Hettich soft-close hinges & runners",
+      "30+ laminate options"
+    ],
+    "isPopular": true
+  },
+  {
+    "id": "3bhk-premium",
+    "name": "3BHK Premium Package",
+    "startingPrice": "3.80",
+    "priceUnit": "Lakhs",
+    "inclusions": [
+      "U-shape / island kitchen",
+      "All bedroom wardrobes",
+      "TV unit",
+      "Crockery unit",
+      "Premium bedroom furniture",
+      "Hafele hardware"
+    ],
+    "isPopular": false
+  }
+]

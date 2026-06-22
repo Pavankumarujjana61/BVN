@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Reviews | BVN Modulars CMS</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="admin-logo-wrapper" style="text-align: center; margin-bottom: 2rem;">
+        <img src="/images/logo.png" alt="BVN Modulars" class="admin-sidebar-logo" style="max-height: 50px; width: auto; object-fit: contain;">
+      </div>
+      <ul class="admin-menu">
+        <li><a href="/admin">Dashboard</a></li>
+        <li><a href="/admin/projects">Manage Projects</a></li>
+        <li class="active"><a href="/admin/testimonials">Manage Reviews</a></li>
+        <li><a href="/admin/pricing">Manage Pricing</a></li>
+        <li><a href="/admin/blogs">Manage Blogs</a></li>
+        <li><a href="/admin/banners">Manage Banners</a></li>
+        <li><a href="/admin/enquiries">Enquiries</a></li>
+        <li><a href="/admin/settings">Settings</a></li>
+      </ul>
+      <div class="admin-logout">
+        <a href="/" target="_blank" style="color: var(--bg-offwhite); display: block; margin-bottom: 1rem;">View Website &rarr;</a>
+        <a href="/admin/logout">Logout</a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+      <header class="admin-header">
+        <h1>Manage Customer Reviews</h1>
+        <div>Administrator</div>
+      </header>
+
+      <% if (typeof success !== 'undefined' && success) { %>
+        <div class="alert alert-success"><%= success %></div>
+      <% } %>
+
+      <div class="admin-form-grid" style="grid-template-columns: 1.2fr 1.8fr; align-items: start;">
+        <!-- Edit / Add Customer Review Form -->
+        <div class="admin-card">
+          <% if (typeof editTestimonial !== 'undefined' && editTestimonial) { %>
+            <h3 style="margin-bottom: 1.5rem; color: var(--primary-oxblood);">Edit Customer Review</h3>
+            <form action="/admin/testimonials/edit/<%= editTestimonial.id %>" method="POST" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="customerName">Customer Name *</label>
+                <input type="text" id="customerName" name="customerName" class="form-control" value="<%= editTestimonial.customerName %>" placeholder="e.g. Priya Reddy" required>
+              </div>
+
+              <div class="form-group">
+                <label for="location">Customer Area & City *</label>
+                <input type="text" id="location" name="location" class="form-control" value="<%= editTestimonial.location %>" placeholder="e.g. Innispeta, Rajahmundry" required>
+              </div>
+
+              <div class="form-group">
+                <label for="serviceType">Service Label *</label>
+                <input type="text" id="serviceType" name="serviceType" class="form-control" value="<%= editTestimonial.serviceType %>" placeholder="e.g. Modular Kitchen — L-Shape with Island" required>
+              </div>
+
+              <div class="form-group">
+                <label for="rating">Star Rating (1-5) *</label>
+                <select id="rating" name="rating" class="form-control" required>
+                  <option value="5" <%= editTestimonial.rating === 5 ? 'selected' : '' %>>5 Stars (Recommended)</option>
+                  <option value="4" <%= editTestimonial.rating === 4 ? 'selected' : '' %>>4 Stars</option>
+                  <option value="3" <%= editTestimonial.rating === 3 ? 'selected' : '' %>>3 Stars</option>
+                  <option value="2" <%= editTestimonial.rating === 2 ? 'selected' : '' %>>2 Stars</option>
+                  <option value="1" <%= editTestimonial.rating === 1 ? 'selected' : '' %>>1 Star</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="customerPhoto">Customer Portrait Photo (Leave empty to keep current)</label>
+                <input type="file" id="customerPhoto" name="customerPhoto" class="form-control" accept="image/*">
+                <div style="margin-top: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="font-size: 0.8rem; color: var(--secondary-walnut);">Current Photo:</span>
+                  <img src="<%= editTestimonial.customerPhoto %>" alt="" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 1.5px solid var(--secondary-walnut);">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="projectPhoto">Completed Project Photo (Leave empty to keep current)</label>
+                <input type="file" id="projectPhoto" name="projectPhoto" class="form-control" accept="image/*">
+                <div style="margin-top: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="font-size: 0.8rem; color: var(--secondary-walnut);">Current Photo:</span>
+                  <img src="<%= editTestimonial.projectPhoto %>" alt="" style="width: 60px; height: 40px; object-fit: cover; border-radius: 4px; border: 1.5px solid var(--secondary-walnut);">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="videoEmbed">Video Embed Link (Optional)</label>
+                <input type="text" id="videoEmbed" name="videoEmbed" class="form-control" value="<%= editTestimonial.videoEmbed || '' %>" placeholder="e.g. https://www.youtube.com/embed/...">
+              </div>
+
+              <div class="form-group">
+                <label for="text">Review Content *</label>
+                <textarea id="text" name="text" class="form-control" placeholder="Review details in customer's own authentic words (2-4 sentences)." required><%= editTestimonial.text %></textarea>
+              </div>
+
+              <button type="submit" class="btn form-submit-btn">Update Review</button>
+              <a href="/admin/testimonials" class="btn btn-secondary" style="display: block; text-align: center; text-decoration: none; margin-top: 0.75rem; padding: 0.75rem 1rem; border: 1px solid var(--secondary-walnut); border-radius: 4px; color: var(--secondary-walnut); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.9rem; background: transparent;">Cancel Edit</a>
+            </form>
+          <% } else { %>
+            <h3 style="margin-bottom: 1.5rem; color: var(--primary-oxblood);">Add Customer Review</h3>
+            <form action="/admin/testimonials/add" method="POST" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="customerName">Customer Name *</label>
+                <input type="text" id="customerName" name="customerName" class="form-control" placeholder="e.g. Priya Reddy" required>
+              </div>
+
+              <div class="form-group">
+                <label for="location">Customer Area & City *</label>
+                <input type="text" id="location" name="location" class="form-control" placeholder="e.g. Innispeta, Rajahmundry" required>
+              </div>
+
+              <div class="form-group">
+                <label for="serviceType">Service Label *</label>
+                <input type="text" id="serviceType" name="serviceType" class="form-control" placeholder="e.g. Modular Kitchen — L-Shape with Island" required>
+              </div>
+
+              <div class="form-group">
+                <label for="rating">Star Rating (1-5) *</label>
+                <select id="rating" name="rating" class="form-control" required>
+                  <option value="5" selected>5 Stars (Recommended)</option>
+                  <option value="4">4 Stars</option>
+                  <option value="3">3 Stars</option>
+                  <option value="2">2 Stars</option>
+                  <option value="1">1 Star</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="customerPhoto">Customer Portrait Photo *</label>
+                <input type="file" id="customerPhoto" name="customerPhoto" class="form-control" accept="image/*" required>
+                <p style="font-size: 0.8rem; color: var(--secondary-walnut); margin-top: 0.25rem;">Square/portrait aspect ratio, head-and-shoulders smiling photo.</p>
+              </div>
+
+              <div class="form-group">
+                <label for="projectPhoto">Completed Project Photo *</label>
+                <input type="file" id="projectPhoto" name="projectPhoto" class="form-control" accept="image/*" required>
+                <p style="font-size: 0.8rem; color: var(--secondary-walnut); margin-top: 0.25rem;">Landscape aspect ratio, under 300KB.</p>
+              </div>
+
+              <div class="form-group">
+                <label for="videoEmbed">Video Embed Link (Optional)</label>
+                <input type="text" id="videoEmbed" name="videoEmbed" class="form-control" placeholder="e.g. https://www.youtube.com/embed/...">
+                <p style="font-size: 0.8rem; color: var(--secondary-walnut); margin-top: 0.25rem;">YouTube embed URL or WhatsApp video link.</p>
+              </div>
+
+              <div class="form-group">
+                <label for="text">Review Content *</label>
+                <textarea id="text" name="text" class="form-control" placeholder="Review details in customer's own authentic words (2-4 sentences)." required></textarea>
+              </div>
+
+              <button type="submit" class="btn form-submit-btn">Save Review</button>
+            </form>
+          <% } %>
+        </div>
+
+        <!-- Testimonial Listing -->
+        <div class="admin-card">
+          <h3 style="margin-bottom: 1.5rem; color: var(--primary-oxblood);">Current Reviews</h3>
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Customer</th>
+                <th>Feedback Snippet</th>
+                <th>Service Label</th>
+                <th>Rating</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% testimonials.forEach(testimonial => { %>
+                <tr>
+                  <td>
+                    <div style="display: flex; gap: 0.5rem; align-items: center;">
+                      <img src="<%= testimonial.customerPhoto %>" alt="" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
+                      <div>
+                        <strong><%= testimonial.customerName %></strong><br>
+                        <span style="font-size: 0.75rem; color: var(--secondary-walnut);"><%= testimonial.location %></span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <span style="font-size: 0.85rem;"><%= testimonial.text.substring(0, 80) %>...</span>
+                  </td>
+                  <td><span style="font-size: 0.8rem;"><%= testimonial.serviceType %></span></td>
+                  <td><span style="color: var(--accent-amber);"><%= '★'.repeat(testimonial.rating) %></span></td>
+                  <td>
+                    <div style="display: flex; gap: 0.5rem; align-items: center;">
+                      <a href="/admin/testimonials?edit=<%= testimonial.id %>" class="btn btn-primary btn-sm" style="text-decoration: none; display: inline-block;">Edit</a>
+                      <form action="/admin/testimonials/delete/<%= testimonial.id %>" method="POST" onsubmit="return confirm('Are you sure you want to delete this review?');" style="margin: 0;">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                      </form>
+                    </div>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+</body>
+</html>

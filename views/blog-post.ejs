@@ -1,0 +1,27 @@
+<%- include('partials/header') %>
+
+<section class="blog-post-header">
+  <div class="container">
+    <h1><%= blog.title %></h1>
+    <div class="blog-post-meta">Published on <%= blog.date %> | by BVN Modulars</div>
+  </div>
+</section>
+
+<section class="blog-post-content-container">
+  <div class="container">
+    <img src="<%= blog.image %>" alt="<%= blog.title %>" class="blog-post-image">
+    
+    <div class="blog-post-body">
+      <%- blog.content %>
+    </div>
+    
+    <div style="margin-top: 5rem; border-top: 1px solid var(--bg-offwhite); padding-top: 3rem; text-align: center;">
+      <h3 style="color: var(--primary-oxblood); margin-bottom: 1rem;">Looking for Custom Modular Interiors in Rajahmundry?</h3>
+      <p style="margin-bottom: 2rem;">Get in touch with our experts today. We manufacture premium modular kitchens and wardrobes at our local Rajahmundry factory.</p>
+      <a href="https://wa.me/919999999999?text=Hi%20BVN%20Modulars!%20I%20just%20read%20your%20blog%20article%20on%20'<%= blog.title %>'.-" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp</a>
+      <a href="/contact" class="btn btn-outline" style="margin-left: 1rem;">Contact Us Page &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

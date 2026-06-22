@@ -1,0 +1,111 @@
+<%- include('partials/header') %>
+
+<!-- 1. Page Opening Banner (Spec: Full-width, Oxblood overlay @ 60%, white text, off-white sub-text) -->
+<section class="hero-section" style="background-image: url('/images/factory_cnc.png'); min-height: 50vh;">
+  <div class="hero-overlay" style="background-color: var(--primary-oxblood); opacity: 0.6;"></div>
+  <div class="container hero-content" style="text-align: center; margin: 0 auto;">
+    <h1 style="color: var(--bg-white);">Everything You See in Your Home Was Built Right Here — In Our Factory, In Rajahmundry.</h1>
+    <p style="color: var(--bg-offwhite);">No middlemen. No outsourcing. No quality surprises. Just precision manufacturing.</p>
+  </div>
+</section>
+
+<!-- 2. Equipment Showcase -->
+<section class="equipment-section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Our Manufacturing Setup</h2>
+    </div>
+    
+    <div class="equipment-showcase-grid">
+      <!-- Machine 1 -->
+      <div class="equipment-item">
+        <div class="equipment-img-wrapper">
+          <img src="/images/factory_cnc.png" alt="CNC Router Machine at BVN Modulars">
+        </div>
+        <div class="equipment-text">
+          <h3>CNC Router Machine</h3>
+          <p>Cuts every board to exact dimensions programmed directly from the design file. Accuracy to 0.1mm eliminates measurement error — every cabinet and drawer fits perfectly, first time.</p>
+        </div>
+      </div>
+      
+      <!-- Machine 2 -->
+      <div class="equipment-item">
+        <div class="equipment-img-wrapper">
+          <img src="/images/factory_edge.png" alt="Edge Banding Machine at BVN Modulars">
+        </div>
+        <div class="equipment-text">
+          <h3>Edge Banding Machine</h3>
+          <p>Applies ABS or PVC tape to all exposed board edges with heat bonding. Seals boards from moisture and wear. Gives a clean factory finish and dramatically extends product lifespan beyond hand-applied alternatives.</p>
+        </div>
+      </div>
+      
+      <!-- Machine 3 -->
+      <div class="equipment-item">
+        <div class="equipment-img-wrapper">
+          <img src="/images/factory_press.png" alt="Laminate Press & Storage at BVN Modulars">
+        </div>
+        <div class="equipment-text">
+          <h3>Laminate Press & Storage</h3>
+          <p>Hot-press bonding of laminates to boards under controlled heat and pressure — far more durable than cold adhesive application. We stock 100+ laminate finishes on-site for immediate production.</p>
+        </div>
+      </div>
+      
+      <!-- Machine 4 -->
+      <div class="equipment-item">
+        <div class="equipment-img-wrapper">
+          <img src="/images/factory_predrill.png" alt="Pre-drilling & Dowel Machine">
+        </div>
+        <div class="equipment-text">
+          <h3>Pre-drilling & Dowel Machine</h3>
+          <p>Drills all hinge and hardware fitting holes at the factory at precise locations — ensures every hinge, drawer runner, and fitting mounts correctly during installation. No on-site improvisation.</p>
+        </div>
+      </div>
+      
+      <!-- Machine 5 -->
+      <div class="equipment-item">
+        <div class="equipment-img-wrapper">
+          <img src="/images/factory_assembly.png" alt="Factory Assembly & QC Area">
+        </div>
+        <div class="equipment-text">
+          <h3>Factory Assembly & QC Area</h3>
+          <p>Every unit is dry-assembled at the factory before packing. Catches any fitting issues before delivery, not after — so installation day is smooth and on schedule.</p>
+        </div>
+      </div>
+
+      <!-- Machine 6 -->
+      <div class="equipment-item">
+        <div class="equipment-img-wrapper">
+          <img src="/images/factory_team.png" alt="Trained Installation Team">
+        </div>
+        <div class="equipment-text">
+          <h3>Trained Installation Team</h3>
+          <p>In-house installation crew trained specifically on BVN Modulars products and quality standards. Not third-party laborers. They know every product detail and installation sequence.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Factory Stats Bar (Spec: Full-width, Oxblood background, Amber numbers, White labels) -->
+<section style="background-color: var(--primary-oxblood); color: var(--bg-white); padding: 3.5rem 0; text-align: center;">
+  <div class="container" style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 2rem;">
+    <div>
+      <div style="font-family: 'Montserrat'; font-size: 2.5rem; font-weight: 700; color: var(--accent-amber);">10</div>
+      <div style="font-size: 0.95rem; color: var(--bg-white);">Years of Operation</div>
+    </div>
+    <div>
+      <div style="font-family: 'Montserrat'; font-size: 2.5rem; font-weight: 700; color: var(--accent-amber);">15,000</div>
+      <div style="font-size: 0.95rem; color: var(--bg-white);">Sq. Ft. Factory Floor</div>
+    </div>
+    <div>
+      <div style="font-family: 'Montserrat'; font-size: 2.5rem; font-weight: 700; color: var(--accent-amber);">1,200+</div>
+      <div style="font-size: 0.95rem; color: var(--bg-white);">Projects Completed</div>
+    </div>
+    <div>
+      <div style="font-family: 'Montserrat'; font-size: 2.5rem; font-weight: 700; color: var(--accent-amber);">8</div>
+      <div style="font-size: 0.95rem; color: var(--bg-white);">Machines in Operation</div>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

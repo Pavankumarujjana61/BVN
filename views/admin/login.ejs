@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login | BVN Modulars</title>
+  <!-- Load Montserrat Google Font -->
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    /* Premium Login Styles Override */
+    .login-body {
+      background-image: url('/images/hero_kitchen.webp');
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      font-family: 'Open Sans', sans-serif;
+      padding: 1.5rem;
+      overflow: hidden;
+    }
+
+    .login-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(40, 14, 13, 0.92) 0%, rgba(14, 14, 14, 0.95) 100%);
+      z-index: 1;
+    }
+
+    .login-card-container {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 440px;
+      animation: loginCardEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes loginCardEntrance {
+      from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .glass-login-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 3.5rem 2.5rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    .login-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 2rem;
+      color: var(--bg-white);
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .login-logo span {
+      color: var(--accent-amber);
+    }
+
+    .login-subtitle {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--bg-offwhite);
+      text-align: center;
+      margin-bottom: 2.5rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    .login-form-group {
+      margin-bottom: 1.75rem;
+      position: relative;
+    }
+
+    .login-form-group label {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--bg-white);
+      margin-bottom: 0.5rem;
+      opacity: 0.9;
+    }
+
+    .login-form-control {
+      width: 100%;
+      min-height: 48px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1rem;
+      color: var(--bg-white);
+      transition: var(--transition-smooth);
+    }
+
+    .login-form-control::placeholder {
+      color: rgba(231, 226, 220, 0.4);
+    }
+
+    .login-form-control:focus {
+      outline: none;
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--accent-amber);
+      box-shadow: 0 0 0 4px rgba(158, 120, 71, 0.25);
+    }
+
+    /* Password Input wrapper for Eye toggle */
+    .password-wrapper {
+      position: relative;
+    }
+
+    .password-toggle-btn {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: rgba(231, 226, 220, 0.5);
+      padding: 0.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-smooth);
+      z-index: 10;
+    }
+
+    .password-toggle-btn:hover {
+      color: var(--bg-white);
+    }
+
+    .login-submit-btn {
+      width: 100%;
+      background: linear-gradient(135deg, var(--secondary-walnut) 0%, #a25c27 100%);
+      color: var(--bg-white);
+      border: none;
+      border-radius: 6px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      min-height: 48px;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      box-shadow: 0 4px 15px rgba(120, 68, 25, 0.3);
+      margin-top: 1.5rem;
+    }
+
+    .login-submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(120, 68, 25, 0.5);
+      background: linear-gradient(135deg, #8b4e1d 0%, var(--secondary-walnut) 100%);
+    }
+
+    .login-submit-btn:active {
+      transform: translateY(0);
+    }
+
+    .login-footer-link {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .login-footer-link a {
+      color: var(--bg-offwhite);
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: var(--transition-smooth);
+      opacity: 0.8;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .login-footer-link a:hover {
+      color: var(--accent-amber);
+      opacity: 1;
+    }
+
+    /* Alert Styling */
+    .login-alert {
+      background-color: rgba(217, 83, 79, 0.15);
+      color: #ff6b6b;
+      border: 1px solid rgba(217, 83, 79, 0.3);
+      padding: 0.85rem 1.25rem;
+      border-radius: 6px;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      animation: alertShake 0.4s ease-in-out;
+    }
+
+    @keyframes alertShake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-6px); }
+      75% { transform: translateX(6px); }
+    }
+  </style>
+</head>
+<body class="login-body">
+  <div class="login-overlay"></div>
+
+  <div class="login-card-container">
+    <div class="glass-login-card">
+      <div class="login-logo-container" style="text-align: center; margin-bottom: 1.5rem;">
+        <img src="/images/logo.png" alt="BVN Modulars" style="max-height: 70px; width: auto; object-fit: contain;">
+      </div>
+      <h3 class="login-subtitle">CMS Admin Login</h3>
+      
+      <% if (typeof error !== 'undefined' && error) { %>
+        <div class="login-alert">
+          <span>⚠️</span>
+          <span><%= error %></span>
+        </div>
+      <% } %>
+      
+      <form action="/admin/login" method="POST">
+        <div class="login-form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" class="login-form-control" placeholder="Enter username" required autofocus>
+        </div>
+        
+        <div class="login-form-group">
+          <label for="password">Password</label>
+          <div class="password-wrapper">
+            <input type="password" id="password" name="password" class="login-form-control" placeholder="Enter password" required style="padding-right: 3rem;">
+            <!-- Show/hide password interactive toggle button -->
+            <button type="button" class="password-toggle-btn" id="pw-toggle" aria-label="Show password">
+              <!-- Inline SVG Eye Icon -->
+              <svg id="eye-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+        </div>
+        
+        <button type="submit" class="login-submit-btn">Sign In to Dashboard</button>
+      </form>
+      
+      <div class="login-footer-link">
+        <a href="/">&larr; Back to Main Website</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Client-side script for password visibility toggle -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const passwordField = document.getElementById('password');
+      const toggleBtn = document.getElementById('pw-toggle');
+      const eyeIcon = document.getElementById('eye-icon');
+
+      if (toggleBtn && passwordField) {
+        toggleBtn.addEventListener('click', () => {
+          const isPassword = passwordField.type === 'password';
+          passwordField.type = isPassword ? 'text' : 'password';
+          
+          // Modify eye icon to show/hide lines
+          if (isPassword) {
+            // Show open eye (or change stroke opacity/style)
+            eyeIcon.innerHTML = `
+              <path d="M17.6 17.6A10 10 0 0 1 12 20c-7 0-11-8-11-8a18.5 18.5 0 0 1 2.2-3.5"></path>
+              <path d="M1 1L23 23"></path>
+              <path d="M9.9 4.2A10.4 10.4 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.2 3.5"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            `;
+            toggleBtn.setAttribute('aria-label', 'Hide password');
+          } else {
+            // Default closed eye
+            eyeIcon.innerHTML = `
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            `;
+            toggleBtn.setAttribute('aria-label', 'Show password');
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

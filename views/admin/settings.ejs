@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CMS Settings | BVN Modulars</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="admin-logo-wrapper" style="text-align: center; margin-bottom: 2rem;">
+        <img src="/images/logo.png" alt="BVN Modulars" class="admin-sidebar-logo" style="max-height: 50px; width: auto; object-fit: contain;">
+      </div>
+      <ul class="admin-menu">
+        <li><a href="/admin">Dashboard</a></li>
+        <li><a href="/admin/projects">Manage Projects</a></li>
+        <li><a href="/admin/testimonials">Manage Reviews</a></li>
+        <li><a href="/admin/pricing">Manage Pricing</a></li>
+        <li><a href="/admin/blogs">Manage Blogs</a></li>
+        <li><a href="/admin/banners">Manage Banners</a></li>
+        <li><a href="/admin/enquiries">Enquiries</a></li>
+        <li class="active"><a href="/admin/settings">Settings</a></li>
+      </ul>
+      <div class="admin-logout">
+        <a href="/" target="_blank" style="color: var(--bg-offwhite); display: block; margin-bottom: 1rem;">View Website &rarr;</a>
+        <a href="/admin/logout">Logout</a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+      <header class="admin-header">
+        <h1>CMS Credentials Settings</h1>
+        <div>Administrator Settings</div>
+      </header>
+
+      <% if (typeof success !== 'undefined' && success && success.length > 0) { %>
+        <div class="alert alert-success" style="background-color: #d4edda; color: #155724; padding: 1rem; border: 1px solid #c3e6cb; border-radius: 4px; margin-bottom: 1.5rem;"><%= success %></div>
+      <% } %>
+      
+      <% if (typeof error !== 'undefined' && error && error.length > 0) { %>
+        <div class="alert alert-danger" style="background-color: rgba(217, 83, 79, 0.1); color: #ff6b6b; padding: 1rem; border: 1px solid rgba(217, 83, 79, 0.2); border-radius: 4px; margin-bottom: 1.5rem;"><%= error %></div>
+      <% } %>
+
+      <div class="admin-card" style="max-width: 600px;">
+        <h3 style="margin-bottom: 1.5rem; color: var(--primary-oxblood); border-bottom: 1px solid var(--bg-offwhite); padding-bottom: 0.5rem;">
+          Change Admin Username & Password
+        </h3>
+        
+        <form action="/admin/settings/update" method="POST" id="settings-form">
+          <div class="form-group" style="margin-bottom: 1.25rem;">
+            <label for="newUsername" style="display: block; font-weight: 600; margin-bottom: 0.5rem;">New Admin Username *</label>
+            <input type="text" id="newUsername" name="newUsername" class="form-control" style="width: 100%;" required placeholder="Enter new username (e.g. admin)">
+          </div>
+
+          <div class="form-group" style="margin-bottom: 1.25rem;">
+            <label for="newPassword" style="display: block; font-weight: 600; margin-bottom: 0.5rem;">New Password *</label>
+            <input type="password" id="newPassword" name="newPassword" class="form-control" style="width: 100%;" required placeholder="Enter new password">
+          </div>
+
+          <div class="form-group" style="margin-bottom: 1.5rem;">
+            <label for="confirmPassword" style="display: block; font-weight: 600; margin-bottom: 0.5rem;">Confirm New Password *</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" style="width: 100%;" required placeholder="Confirm new password">
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="background-color: var(--primary-oxblood); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 4px; font-weight: 600; cursor: pointer;">
+            Update Credentials
+          </button>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    document.getElementById('settings-form').addEventListener('submit', function(e) {
+      const newPassword = document.getElementById('newPassword').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+      
+      if (newPassword !== confirmPassword) {
+        e.preventDefault();
+        alert('Passwords do not match! Please verify your inputs.');
+      }
+    });
+  </script>
+</body>
+</html>

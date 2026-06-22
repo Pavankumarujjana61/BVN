@@ -1,0 +1,35 @@
+[
+  {
+    "id": "testimonial-priya-reddy",
+    "customerName": "Priya Reddy",
+    "location": "Innispeta, Rajahmundry",
+    "rating": 5,
+    "customerPhoto": "/images/customer_priya.svg",
+    "projectPhoto": "/images/project_kitchen.webp",
+    "text": "BVN Modulars transformed our kitchen into a masterclass. The CNC cutting and edge-banding work are absolutely flawless. Our kitchen works beautifully!",
+    "serviceType": "Modular Kitchen — L-Shape with Island, Rajahmundry",
+    "videoEmbed": ""
+  },
+  {
+    "id": "testimonial-suresh-kumar",
+    "customerName": "Suresh Kumar",
+    "location": "Danavaipeta, Rajahmundry",
+    "rating": 5,
+    "customerPhoto": "/images/customer_suresh.svg",
+    "projectPhoto": "/images/project_tv_unit.webp",
+    "text": "Extremely professional service. From 3D design to factory finish to final setup, everything was seamless and completed in 20 days. Best modular furniture in AP.",
+    "serviceType": "TV Unit Design, Rajahmundry",
+    "videoEmbed": ""
+  },
+  {
+    "id": "testimonial-anitha-rao",
+    "customerName": "Anitha Rao",
+    "location": "T-Nagar, Rajahmundry",
+    "rating": 5,
+    "customerPhoto": "/images/customer_anitha.svg",
+    "projectPhoto": "/images/project_wardrobe.webp",
+    "text": "The sliding wardrobes with lofts are super spacious and durable. Their Hettich soft-close fittings work smoothly. Highly recommend their factory-made quality.",
+    "serviceType": "Wardrobe with Loft, Rajahmundry",
+    "videoEmbed": ""
+  }
+]

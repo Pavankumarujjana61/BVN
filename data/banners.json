@@ -1,0 +1,32 @@
+[
+  {
+    "id": "banner-1",
+    "image": "/images/hero_kitchen.webp",
+    "title": "Factory-Made Modular Interiors — Delivered to Your Door in Rajahmundry",
+    "subtitle": "Custom Kitchens, Wardrobes, TV Units & More — Designed in 3D, Built in Our Own Factory",
+    "btn1Text": "Get Free 3D Design Consultation",
+    "btn1Url": "#contact-form",
+    "btn2Text": "View Our Projects",
+    "btn2Url": "/projects"
+  },
+  {
+    "id": "banner-2",
+    "image": "/images/project_wardrobe.webp",
+    "title": "Sleek Sliding Wardrobes & Loft Storage Solutions",
+    "subtitle": "Maximize your bedroom space with moisture-sealed drawers and custom wardrobes built in our factory.",
+    "btn1Text": "Get Free 3D Design Consultation",
+    "btn1Url": "#contact-form",
+    "btn2Text": "View Our Projects",
+    "btn2Url": "/projects"
+  },
+  {
+    "id": "banner-3",
+    "image": "/images/project_tv_unit.webp",
+    "title": "Stunning Backlit TV Units & Louver Panels",
+    "subtitle": "Transform your living room with premium floating consoles and ambient LED lighting strips.",
+    "btn1Text": "Get Free 3D Design Consultation",
+    "btn1Url": "#contact-form",
+    "btn2Text": "View Our Projects",
+    "btn2Url": "/projects"
+  }
+]

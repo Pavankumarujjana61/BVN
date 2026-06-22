@@ -1,0 +1,100 @@
+<%- include('partials/header') %>
+
+<section class="contact-header">
+  <div class="container reveal">
+    <h1>Contact Us</h1>
+    <p>Get in Touch with BVN Modulars Rajahmundry</p>
+  </div>
+</section>
+
+<section class="contact-page-section" style="padding: 5rem 0; background-color: var(--bg-offwhite);">
+  <div class="container">
+    <div class="contact-section-grid">
+      <!-- Contact Info Side (Left Column, animated) -->
+      <div class="contact-info-side reveal reveal-left">
+        <div>
+          <div class="contact-details-list">
+            <div class="contact-detail-card reveal reveal-scale">
+              <div class="contact-detail-icon">📞</div>
+              <div class="contact-detail-text">
+                <h4>Call Us</h4>
+                <p style="font-size: 1.15rem; font-weight: 700; color: var(--primary-oxblood); margin-top: 0.25rem;">+91 9000333633</p>
+                <p style="font-size: 1.15rem; font-weight: 700; color: var(--primary-oxblood); margin-top: 0.25rem;">+91 7893393311</p>
+              </div>
+            </div>
+            
+            <div class="contact-detail-card reveal reveal-scale">
+              <div class="contact-detail-icon">✉️</div>
+              <div class="contact-detail-text">
+                <h4>Email Support</h4>
+                <p style="font-size: 1.05rem; font-weight: 600; color: var(--primary-oxblood); margin-top: 0.25rem;">info@bvnmodulars.com</p>
+              </div>
+            </div>
+            
+            <div class="contact-detail-card reveal reveal-scale">
+              <div class="contact-detail-icon">🕒</div>
+              <div class="contact-detail-text">
+                <h4>Working Hours</h4>
+                <p style="font-size: 0.95rem; font-weight: 500; color: var(--body-charcoal); margin-top: 0.25rem;">Mon - Sat: 9:00 AM - 8:00 PM (Sunday Closed)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="map-embed-container" style="box-shadow: var(--shadow-medium); border: 2px solid var(--bg-white); border-radius: 8px; overflow: hidden; height: 320px;">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3814.9448323526794!2d81.8110899!3d17.026375899999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a37a258bc0def87%3A0xa70c706e072e337!2sBVN%20modulars!5e0!3m2!1sen!2sin!4v1781945065422!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+
+      <!-- Contact Form Side (Right Column, animated, premium layout) -->
+      <div class="contact-form-side reveal reveal-right" style="border-top: 6px solid var(--primary-oxblood); box-shadow: var(--shadow-premium); background-color: var(--bg-white); padding: 3rem; border-radius: 8px;">
+        <h3 style="color: var(--primary-oxblood); margin-bottom: 0.5rem; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.8rem;">Send An Enquiry</h3>
+        <p style="font-size: 0.9rem; color: var(--secondary-walnut); margin-bottom: 2rem;">Fill out the form and our design team will contact you within 24 hours.</p>
+        
+        <% if (typeof success !== 'undefined' && success) { %>
+          <div class="alert alert-success" style="background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; padding: 1rem; border-radius: 4px; margin-bottom: 1.5rem; font-size: 0.95rem;">Your enquiry was submitted successfully! We will get in touch with you shortly.</div>
+        <% } %>
+        
+        <form action="/enquire" method="POST">
+          <div class="form-group" style="margin-bottom: 1.5rem;">
+            <label for="name" style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.85rem; color: var(--body-charcoal); margin-bottom: 0.5rem; display: block;">Your Name *</label>
+            <input type="text" id="name" name="name" class="form-control" placeholder="Enter your full name" required style="width: 100%; min-height: 48px; border: 1px solid rgba(120, 68, 25, 0.15); border-radius: 4px; padding: 0.75rem 1rem; font-size: 1rem; transition: var(--transition-smooth);">
+          </div>
+          
+          <div class="form-group" style="margin-bottom: 1.5rem;">
+            <label for="phone" style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.85rem; color: var(--body-charcoal); margin-bottom: 0.5rem; display: block;">Phone Number *</label>
+            <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter 10-digit mobile number" pattern="[0-9]{10}" inputmode="numeric" required style="width: 100%; min-height: 48px; border: 1px solid rgba(120, 68, 25, 0.15); border-radius: 4px; padding: 0.75rem 1rem; font-size: 1rem; transition: var(--transition-smooth);">
+          </div>
+          
+          <div class="form-group" style="margin-bottom: 1.5rem;">
+            <label for="city" style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.85rem; color: var(--body-charcoal); margin-bottom: 0.5rem; display: block;">City / Area *</label>
+            <input type="text" id="city" name="city" class="form-control" placeholder="e.g. Innispeta, Rajahmundry" required style="width: 100%; min-height: 48px; border: 1px solid rgba(120, 68, 25, 0.15); border-radius: 4px; padding: 0.75rem 1rem; font-size: 1rem; transition: var(--transition-smooth);">
+          </div>
+          
+          <div class="form-group" style="margin-bottom: 1.5rem;">
+            <label for="service" style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.85rem; color: var(--body-charcoal); margin-bottom: 0.5rem; display: block;">Service Interested In *</label>
+            <select id="service" name="service" class="form-control" required style="width: 100%; min-height: 48px; border: 1px solid rgba(120, 68, 25, 0.15); border-radius: 4px; padding: 0.75rem 1rem; font-size: 1rem; transition: var(--transition-smooth); background-color: var(--bg-white);">
+              <option value="" disabled selected>Select a service</option>
+              <option value="Modular Kitchen">Modular Kitchen</option>
+              <option value="Wardrobe & Storage">Wardrobe & Storage</option>
+              <option value="TV Unit & Louvers">TV Unit & Louvers</option>
+              <option value="Bedroom Furniture">Bedroom Furniture</option>
+              <option value="Crockery Unit">Crockery Unit</option>
+              <option value="Office Interiors">Office Interiors</option>
+            </select>
+          </div>
+          
+          <div class="form-group" style="margin-bottom: 1.5rem;">
+            <label for="message" style="font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.85rem; color: var(--body-charcoal); margin-bottom: 0.5rem; display: block;">Message (Optional)</label>
+            <textarea id="message" name="message" class="form-control" placeholder="Tell us more about your space..." style="width: 100%; min-height: 120px; border: 1px solid rgba(120, 68, 25, 0.15); border-radius: 4px; padding: 0.75rem 1rem; font-size: 1rem; transition: var(--transition-smooth); resize: vertical;"></textarea>
+          </div>
+          
+          <button type="submit" class="btn form-submit-btn" style="width: 100%; min-height: 50px; background-color: var(--secondary-walnut); color: var(--bg-white); border: none; font-family: 'Montserrat', sans-serif; font-weight: 700; text-transform: uppercase; font-size: 1rem; letter-spacing: 0.5px; border-radius: 4px; cursor: pointer; transition: var(--transition-smooth);">Send My Enquiry</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>
+

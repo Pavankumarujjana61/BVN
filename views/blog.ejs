@@ -1,0 +1,34 @@
+<%- include('partials/header') %>
+
+<section class="blog-post-header">
+  <div class="container">
+    <h1>Our Interior Blog</h1>
+    <div class="blog-post-meta">Local Search Rankings & Long-Form SEO Content for Rajahmundry & AP</div>
+  </div>
+</section>
+
+<section class="blog-listing-section">
+  <div class="container">
+    <div class="blog-grid">
+      <% blogs.forEach(post => { %>
+        <div class="blog-card">
+          <div class="blog-card-img-wrapper">
+            <img src="<%= post.image %>" alt="<%= post.title %> cover image">
+          </div>
+          <div class="blog-card-content">
+            <div>
+              <div class="blog-date"><%= post.date %></div>
+              <h3><%= post.title %></h3>
+              <p><%= post.summary %></p>
+            </div>
+            <div style="margin-top: 1.5rem;">
+              <a href="/blog/<%= post.id %>" class="blog-read-more">Read Full Article &rarr;</a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

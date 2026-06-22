@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Enquiries | BVN Modulars CMS</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="admin-logo-wrapper" style="text-align: center; margin-bottom: 2rem;">
+        <img src="/images/logo.png" alt="BVN Modulars" class="admin-sidebar-logo" style="max-height: 50px; width: auto; object-fit: contain;">
+      </div>
+      <ul class="admin-menu">
+        <li><a href="/admin">Dashboard</a></li>
+        <li><a href="/admin/projects">Manage Projects</a></li>
+        <li><a href="/admin/testimonials">Manage Reviews</a></li>
+        <li><a href="/admin/pricing">Manage Pricing</a></li>
+        <li><a href="/admin/blogs">Manage Blogs</a></li>
+        <li><a href="/admin/banners">Manage Banners</a></li>
+        <li class="active"><a href="/admin/enquiries">Enquiries</a></li>
+        <li><a href="/admin/settings">Settings</a></li>
+      </ul>
+      <div class="admin-logout">
+        <a href="/" target="_blank" style="color: var(--bg-offwhite); display: block; margin-bottom: 1rem;">View Website &rarr;</a>
+        <a href="/admin/logout">Logout</a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+      <header class="admin-header">
+        <h1>Customer Enquiries List</h1>
+        <div>Administrator</div>
+      </header>
+
+      <div class="admin-card">
+        <h3 style="margin-bottom: 1.5rem; color: var(--primary-oxblood);">Form Submissions (Stored in Database)</h3>
+        
+        <% if (enquiries.length === 0) { %>
+          <p>No customer enquiries received yet. Form submissions will appear here.</p>
+        <% } else { %>
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Date / Time</th>
+                <th>Customer Details</th>
+                <th>City / Area</th>
+                <th>Service Interested</th>
+                <th>Customer Message</th>
+                <th>Follow Up Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% enquiries.forEach(enquiry => { %>
+                <tr>
+                  <td><%= new Date(enquiry.date).toLocaleString() %></td>
+                  <td>
+                    <strong><%= enquiry.name %></strong><br>
+                    <span style="font-size: 0.85rem; color: var(--secondary-walnut);"><%= enquiry.phone %></span>
+                  </td>
+                  <td><%= enquiry.city %></td>
+                  <td>
+                    <span style="font-family: 'Montserrat'; font-weight: 600; font-size: 0.85rem; background-color: var(--bg-offwhite); padding: 0.3rem 0.6rem; border-radius: 4px; color: var(--primary-oxblood);">
+                      <%= enquiry.service %>
+                    </span>
+                  </td>
+                  <td><%= enquiry.message || '-' %></td>
+                  <td>
+                    <!-- Spec: WhatsApp Green button to instantly call/text them on WhatsApp -->
+                    <a href="https://wa.me/91<%= enquiry.phone %>?text=Hi%20<%= encodeURIComponent(enquiry.name) %>!%20This%20is%20BVN%20Modulars%20Rajahmundry.%20We%20received%20your%20enquiry%20for%20a%20<%= encodeURIComponent(enquiry.service) %>.%20Let's%20connect." 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="btn btn-primary btn-sm"
+                       style="background-color: var(--whatsapp-green); border: none; font-weight: 600; color: white;">
+                      Chat &rarr;
+                    </a>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        <% } %>
+      </div>
+    </main>
+  </div>
+
+</body>
+</html>

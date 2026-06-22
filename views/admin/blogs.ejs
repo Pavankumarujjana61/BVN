@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Blogs | BVN Modulars CMS</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="admin-logo-wrapper" style="text-align: center; margin-bottom: 2rem;">
+        <img src="/images/logo.png" alt="BVN Modulars" class="admin-sidebar-logo" style="max-height: 50px; width: auto; object-fit: contain;">
+      </div>
+      <ul class="admin-menu">
+        <li><a href="/admin">Dashboard</a></li>
+        <li><a href="/admin/projects">Manage Projects</a></li>
+        <li><a href="/admin/testimonials">Manage Reviews</a></li>
+        <li><a href="/admin/pricing">Manage Pricing</a></li>
+        <li class="active"><a href="/admin/blogs">Manage Blogs</a></li>
+        <li><a href="/admin/banners">Manage Banners</a></li>
+        <li><a href="/admin/enquiries">Enquiries</a></li>
+        <li><a href="/admin/settings">Settings</a></li>
+      </ul>
+      <div class="admin-logout">
+        <a href="/" target="_blank" style="color: var(--bg-offwhite); display: block; margin-bottom: 1rem;">View Website &rarr;</a>
+        <a href="/admin/logout">Logout</a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+      <header class="admin-header">
+        <h1>Manage SEO Blogs</h1>
+        <div>Administrator</div>
+      </header>
+
+      <% if (typeof success !== 'undefined' && success) { %>
+        <div class="alert alert-success"><%= success %></div>
+      <% } %>
+
+      <div class="admin-form-grid" style="grid-template-columns: 1.4fr 1.6fr; align-items: start;">
+        <!-- Edit / Write Blog Post Form -->
+        <div class="admin-card">
+          <% if (typeof editBlog !== 'undefined' && editBlog) { %>
+            <h3 style="margin-bottom: 1.5rem; color: var(--primary-oxblood);">Edit Blog Post</h3>
+            <form action="/admin/blogs/edit/<%= editBlog.id %>" method="POST" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="title">Blog Title *</label>
+                <input type="text" id="title" name="title" class="form-control" value="<%= editBlog.title %>" placeholder="e.g. Best Wardrobe Designs in Rajahmundry" required>
+              </div>
+
+              <div class="form-group">
+                <label for="id">URL Slug (lowercase-with-hyphens) *</label>
+                <input type="text" id="id" name="id" class="form-control" value="<%= editBlog.id %>" readonly style="background-color: var(--bg-offwhite); cursor: not-allowed;">
+                <p style="font-size: 0.8rem; color: var(--secondary-walnut); margin-top: 0.25rem;">The URL slug cannot be changed after publication to protect search engine rankings.</p>
+              </div>
+
+              <div class="form-group">
+                <label for="blogImage">Cover Image (Leave empty to keep current)</label>
+                <input type="file" id="blogImage" name="blogImage" class="form-control" accept="image/*">
+                <div style="margin-top: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                  <span style="font-size: 0.8rem; color: var(--secondary-walnut);">Current Cover:</span>
+                  <img src="<%= editBlog.image %>" alt="" style="width: 70px; height: 40px; object-fit: cover; border-radius: 4px; border: 1.5px solid var(--secondary-walnut);">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="summary">Short Summary *</label>
+                <textarea id="summary" name="summary" class="form-control" style="min-height: 70px;" placeholder="Brief summary displayed on listings (max 150 chars)..." required><%= editBlog.summary %></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="content">Article Content (HTML tags supported) *</label>
+                <textarea id="content" name="content" class="form-control" style="min-height: 250px;" placeholder="Use HTML tags like <p>, <h3>, <li> for structures..." required><%= editBlog.content %></textarea>
+              </div>
+
+              <div style="background-color: var(--bg-offwhite); padding: 1.25rem; border-radius: 6px; margin: 1.5rem 0;">
+                <h4 style="font-family: 'Montserrat'; font-weight: 700; color: var(--primary-oxblood); font-size: 0.95rem; margin-bottom: 1rem;">SEO Search Meta tags</h4>
+                
+                <div class="form-group">
+                  <label for="metaTitle">SEO Title Tag (Max 60 chars) *</label>
+                  <input type="text" id="metaTitle" name="metaTitle" class="form-control" value="<%= editBlog.metaTitle %>" placeholder="e.g. Wardrobe Designs Rajahmundry | BVN Modulars" required>
+                </div>
+                
+                <div class="form-group" style="margin-top: 1rem;">
+                  <label for="metaDescription">Meta Description (Max 155 chars) *</label>
+                  <input type="text" id="metaDescription" name="metaDescription" class="form-control" value="<%= editBlog.metaDescription %>" placeholder="e.g. Discover modular wardrobes with lofts in Rajahmundry. Request free 3D quote now!" required>
+                </div>
+              </div>
+
+              <button type="submit" class="btn form-submit-btn">Update Blog Post</button>
+              <a href="/admin/blogs" class="btn btn-secondary" style="display: block; text-align: center; text-decoration: none; margin-top: 0.75rem; padding: 0.75rem 1rem; border: 1px solid var(--secondary-walnut); border-radius: 4px; color: var(--secondary-walnut); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.9rem; background: transparent;">Cancel Edit</a>
+            </form>
+          <% } else { %>
+            <h3 style="margin-bottom: 1.5rem; color: var(--primary-oxblood);">Write New Blog Post</h3>
+            <form action="/admin/blogs/add" method="POST" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="title">Blog Title *</label>
+                <input type="text" id="title" name="title" class="form-control" placeholder="e.g. Best Wardrobe Designs in Rajahmundry" required>
+              </div>
+
+              <div class="form-group">
+                <label for="id">URL Slug (lowercase-with-hyphens) *</label>
+                <input type="text" id="id" name="id" class="form-control" placeholder="e.g. best-wardrobe-designs-rajahmundry" required>
+              </div>
+
+              <div class="form-group">
+                <label for="blogImage">Cover Image *</label>
+                <input type="file" id="blogImage" name="blogImage" class="form-control" accept="image/*" required>
+                <p style="font-size: 0.8rem; color: var(--secondary-walnut); margin-top: 0.25rem;">16:9 ratio, under 300KB.</p>
+              </div>
+
+              <div class="form-group">
+                <label for="summary">Short Summary *</label>
+                <textarea id="summary" name="summary" class="form-control" style="min-height: 70px;" placeholder="Brief summary displayed on listings (max 150 chars)..." required></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="content">Article Content (HTML tags supported) *</label>
+                <textarea id="content" name="content" class="form-control" style="min-height: 250px;" placeholder="Use HTML tags like <p>, <h3>, <li> for structures..." required></textarea>
+              </div>
+
+              <div style="background-color: var(--bg-offwhite); padding: 1.25rem; border-radius: 6px; margin: 1.5rem 0;">
+                <h4 style="font-family: 'Montserrat'; font-weight: 700; color: var(--primary-oxblood); font-size: 0.95rem; margin-bottom: 1rem;">SEO Search Meta tags</h4>
+                
+                <div class="form-group">
+                  <label for="metaTitle">SEO Title Tag (Max 60 chars) *</label>
+                  <input type="text" id="metaTitle" name="metaTitle" class="form-control" placeholder="e.g. Wardrobe Designs Rajahmundry | BVN Modulars" required>
+                </div>
+                
+                <div class="form-group" style="margin-top: 1rem;">
+                  <label for="metaDescription">Meta Description (Max 155 chars) *</label>
+                  <input type="text" id="metaDescription" name="metaDescription" class="form-control" placeholder="e.g. Discover modular wardrobes with lofts in Rajahmundry. Request free 3D quote now!" required>
+                </div>
+              </div>
+
+              <button type="submit" class="btn form-submit-btn">Publish Blog Post</button>
+            </form>
+          <% } %>
+        </div>
+
+        <!-- Blog Posts list -->
+        <div class="admin-card">
+          <h3 style="margin-bottom: 1.5rem; color: var(--primary-oxblood);">Published Articles</h3>
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Cover</th>
+                <th>Title / Slug</th>
+                <th>SEO Meta Score</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% blogs.forEach(post => { %>
+                <tr>
+                  <td>
+                    <img src="<%= post.image %>" alt="" style="width: 70px; height: 40px; object-fit: cover; border-radius: 4px;">
+                  </td>
+                  <td>
+                    <strong><%= post.title %></strong><br>
+                    <span style="font-size: 0.75rem; color: var(--secondary-walnut);"><%= post.id %></span>
+                  </td>
+                  <td>
+                    <span style="font-size: 0.8rem; font-weight: 600; color: #155724;">Active</span>
+                  </td>
+                  <td>
+                    <div style="display: flex; gap: 0.5rem; align-items: center;">
+                      <a href="/admin/blogs?edit=<%= post.id %>" class="btn btn-primary btn-sm" style="text-decoration: none; display: inline-block;">Edit</a>
+                      <form action="/admin/blogs/delete/<%= post.id %>" method="POST" onsubmit="return confirm('Are you sure you want to delete this blog post?');" style="margin: 0;">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                      </form>
+                    </div>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+</body>
+</html>

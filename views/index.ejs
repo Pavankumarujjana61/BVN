@@ -1,0 +1,588 @@
+<%- include('partials/header') %>
+
+<!-- 1. Hero Banner Slider Section (Automatic Scrolling) -->
+<section class="hero-section hero-slider-container">
+  <div class="hero-track">
+    <% if (typeof banners !== 'undefined' && banners.length > 0) { %>
+      <% banners.forEach((slide, index) => { %>
+        <div class="hero-slide <%= index === 0 ? 'active' : '' %>" style="background-image: url('<%= slide.image %>');">
+          <div class="hero-overlay" style="background-color: var(--primary-oxblood); opacity: 0.55;"></div>
+          <div class="container hero-content">
+            <h1><%= slide.title %></h1>
+            <p><%= slide.subtitle %></p>
+            <div class="hero-actions">
+              <% if (slide.btn1Text) { %>
+                <a href="<%= slide.btn1Url || '#contact-form' %>" class="btn btn-primary"><%= slide.btn1Text %></a>
+              <% } %>
+              <% if (slide.btn2Text) { %>
+                <a href="<%= slide.btn2Url || '/projects' %>" class="btn btn-secondary"><%= slide.btn2Text %></a>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    <% } else { %>
+      <!-- Fallback Slide if database is empty -->
+      <div class="hero-slide active" style="background-image: url('/images/hero_kitchen.webp');">
+        <div class="hero-overlay" style="background-color: var(--primary-oxblood); opacity: 0.55;"></div>
+        <div class="container hero-content">
+          <h1>Factory-Made Modular Interiors — Delivered to Your Door in Rajahmundry</h1>
+          <p>Custom Kitchens, Wardrobes, TV Units &amp; More — Designed in 3D, Built in Our Own Factory</p>
+          <div class="hero-actions">
+            <a href="#contact-form" class="btn btn-primary">Get Free 3D Design Consultation</a>
+            <a href="/projects" class="btn btn-secondary">View Our Projects</a>
+          </div>
+        </div>
+      </div>
+    <% } %>
+  </div>
+  
+  <!-- Slide Navigation Indicators -->
+  <div class="hero-slider-dots">
+    <% if (typeof banners !== 'undefined' && banners.length > 0) { %>
+      <% banners.forEach((_, index) => { %>
+        <span class="hero-dot <%= index === 0 ? 'active' : '' %>" data-slide="<%= index %>"></span>
+      <% }) %>
+    <% } else { %>
+      <span class="hero-dot active" data-slide="0"></span>
+    <% } %>
+  </div>
+</section>
+
+
+<!-- 2. Why BVN Modulars (USP Tiles) Section -->
+<section class="usps-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2 class="section-title">Why BVN Modulars</h2>
+    </div>
+    <div class="usp-grid">
+      <div class="usp-card reveal stagger-1">
+        <div class="usp-icon">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Factory-Made Precision</h3>
+        <p>Every board CNC-cut to 0.1mm accuracy in our own manufacturing unit — no guesswork, no rework.</p>
+      </div>
+      
+      <div class="usp-card reveal stagger-2">
+        <div class="usp-icon">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>On-Time Delivery</h3>
+        <p>Production timelines are tracked from order confirmation to installation. We commit to deadlines and meet them.</p>
+      </div>
+      
+      <div class="usp-card reveal stagger-3">
+        <div class="usp-icon">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <h3>Fully Custom Designs</h3>
+        <p>No catalogue limitations. Your space, your layout, your finish — modelled in 3D before a single board is cut.</p>
+      </div>
+      
+      <div class="usp-card reveal stagger-4">
+        <div class="usp-icon">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="12" y1="10" x2="12" y2="18"/><line x1="8" y1="14" x2="16" y2="14"/></svg>
+        </div>
+        <h3>Transparent Pricing</h3>
+        <p>Fixed package pricing with itemised quotations. You know the full cost before you sign anything — no hidden charges.</p>
+      </div>
+      
+      <div class="usp-card reveal stagger-5">
+        <div class="usp-icon">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <h3>5–10 Year Durability</h3>
+        <p>Commercial-grade marine ply, premium laminates, and branded hardware (Hettich, Hafele) built to last a decade.</p>
+      </div>
+      
+      <div class="usp-card reveal stagger-6">
+        <div class="usp-icon">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>End-to-End Service</h3>
+        <p>Design consultation → 3D render → factory production → professional installation. One team, zero coordination headache.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Services Overview Section -->
+<section class="services-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2 class="section-title">Our Services</h2>
+    </div>
+    <div class="services-grid">
+      <!-- Service 1: Kitchens -->
+      <div class="service-card reveal stagger-1">
+        <div class="service-card-header">
+          <h3>Modular Kitchens</h3>
+        </div>
+        <div class="service-img-wrapper">
+          <img src="/images/service_kitchen.webp" alt="Modular L-Shape Kitchen Rajahmundry">
+        </div>
+        <div class="service-card-body">
+          <p>Straight, L-shape, U-shape, and island configurations. Customized layouts designed for Indian cooking habits.</p>
+          <a href="https://wa.me/919999999999?text=Hi%20BVN%20Modulars!%20I'm%20interested%20in%20Modular%20Kitchens." class="service-cta" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp &rarr;</a>
+        </div>
+      </div>
+      
+      <!-- Service 2: Wardrobes -->
+      <div class="service-card reveal stagger-2">
+        <div class="service-card-header">
+          <h3>Wardrobes & Storage</h3>
+        </div>
+        <div class="service-img-wrapper">
+          <img src="/images/service_wardrobe.webp" alt="Modular Wardrobe Designs Rajahmundry">
+        </div>
+        <div class="service-card-body">
+          <p>Sliding doors, hinged wardrobes, walk-in closets, and custom overhead lofts built for maximum storage.</p>
+          <a href="https://wa.me/919999999999?text=Hi%20BVN%20Modulars!%20I'm%20interested%20in%20Wardrobes." class="service-cta" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp &rarr;</a>
+        </div>
+      </div>
+      
+      <!-- Service 3: TV Units -->
+      <div class="service-card reveal stagger-3">
+        <div class="service-card-header">
+          <h3>TV Units & Louvers</h3>
+        </div>
+        <div class="service-img-wrapper">
+          <img src="/images/service_tv_unit.webp" alt="TV Unit Design Rajahmundry">
+        </div>
+        <div class="service-card-body">
+          <p>Modern floating consoles, backlit charcoal panels, storage drawers, and premium display units.</p>
+          <a href="https://wa.me/919999999999?text=Hi%20BVN%20Modulars!%20I'm%20interested%20in%20TV%20Units." class="service-cta" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp &rarr;</a>
+        </div>
+      </div>
+      
+      <!-- Service 4: Bedroom Furniture -->
+      <div class="service-card reveal stagger-4">
+        <div class="service-card-header">
+          <h3>Bedroom Furniture</h3>
+        </div>
+        <div class="service-img-wrapper">
+          <img src="/images/service_bedroom.webp" alt="Modular Bedroom Furniture Rajahmundry">
+        </div>
+        <div class="service-card-body">
+          <p>Complete master and kids bedroom sets, including customized headboards, dressers, and side tables.</p>
+          <a href="https://wa.me/919999999999?text=Hi%20BVN%20Modulars!%20I'm%20interested%20in%20Bedroom%20Furniture." class="service-cta" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp &rarr;</a>
+        </div>
+      </div>
+      
+      <!-- Service 5: Crockery Cupboards -->
+      <div class="service-card reveal stagger-5">
+        <div class="service-card-header">
+          <h3>Crockery Units</h3>
+        </div>
+        <div class="service-img-wrapper">
+          <img src="/images/service_crockery.webp" alt="Crockery Unit designs Rajahmundry">
+        </div>
+        <div class="service-card-body">
+          <p>Elegant dining room showcases with glass doors, profile lighting, and bottom drawer storage systems.</p>
+          <a href="https://wa.me/919999999999?text=Hi%20BVN%20Modulars!%20I'm%20interested%20in%20Crockery%20Units." class="service-cta" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp &rarr;</a>
+        </div>
+      </div>
+      
+      <!-- Service 6: Office Interiors -->
+      <div class="service-card reveal stagger-6">
+        <div class="service-card-header">
+          <h3>Office Interiors</h3>
+        </div>
+        <div class="service-img-wrapper">
+          <img src="/images/service_office.webp" alt="Corporate Office Interior Rajahmundry">
+        </div>
+        <div class="service-card-body">
+          <p>Professional corporate office workspaces, reception tables, conference rooms, and storage units.</p>
+          <a href="https://wa.me/919999999999?text=Hi%20BVN%20Modulars!%20I'm%20interested%20in%20Office%20Interiors." class="service-cta" target="_blank" rel="noopener noreferrer">Enquire on WhatsApp &rarr;</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="services-action reveal">
+      <a href="/services" class="btn btn-outline">See All Services &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Featured Projects Section -->
+<section class="projects-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2 class="section-title">Featured Projects</h2>
+    </div>
+    <div class="projects-grid">
+      <% featuredProjects.forEach((project, idx) => { %>
+        <div class="project-card lightbox-trigger reveal stagger-<%= (idx % 3) + 1 %>" 
+             data-img="<%= project.image %>" 
+             data-title="<%= project.title %>" 
+             data-category="<%= project.category.replace('-', ' ').toUpperCase() %>">
+          <img src="<%= project.image %>" alt="<%= project.title %> by BVN Modulars Rajahmundry" class="project-img">
+          <div class="project-overlay">
+            <span class="project-category"><%= project.category.replace('-', ' ') %></span>
+            <h3 class="project-title"><%= project.title %></h3>
+            <div class="project-meta">
+              <span class="project-location"><%= project.location %></span>
+              <span class="project-link" style="color: var(--accent-amber);">View Project &rarr;</span>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+    
+    <div class="projects-action reveal">
+      <a href="/projects" class="btn btn-primary">Explore All Projects &rarr;</a>
+      <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--secondary-walnut); font-weight: 600;">
+        Love this design? Ask us to create it for you &rarr; 
+        <a href="https://wa.me/919999999999?text=Hi%20BVN%20Modulars!%20I%20saw%20your%20featured%20projects%20and%20want%20to%20discuss%20a%20similar%20design." target="_blank" rel="noopener noreferrer" style="color: var(--secondary-walnut); text-decoration: underline;">Chat on WhatsApp</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Manufacturing Unit Showcase Section -->
+<section class="factory-showcase">
+  <div class="container">
+    <div class="factory-showcase-grid">
+      <div class="factory-details reveal reveal-left">
+        <h2>Made In Our Own Factory — Not Outsourced, Not Compromised</h2>
+        <h3>Direct from Factory to Home</h3>
+        <p class="factory-copy">
+          From raw board to finished cabinet — every step happens inside our manufacturing unit in Rajahmundry. Our heavy CNC machines cut with 0.1mm precision, and our automated edge-banding machines seal every board edge to protect it from moisture, ensuring decades of durability.
+        </p>
+        
+        <div class="factory-stats">
+          <div class="stat-item">
+            <div class="stat-icon">⚙️</div>
+            <div>
+              <div class="stat-num">10+</div>
+              <div class="stat-label">Years of Operation</div>
+            </div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-icon">📐</div>
+            <div>
+              <div class="stat-num">15,000</div>
+              <div class="stat-label">Sq. Ft. Factory Floor</div>
+            </div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-icon">🏠</div>
+            <div>
+              <div class="stat-num">1,200+</div>
+              <div class="stat-label">Projects Completed</div>
+            </div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-icon">🔧</div>
+            <div>
+              <div class="stat-num">8+</div>
+              <div class="stat-label">Machines in Operation</div>
+            </div>
+          </div>
+        </div>
+        
+        <a href="/factory-tour" class="btn btn-primary" style="background-color: var(--secondary-walnut);">Take a Virtual Factory Tour &rarr;</a>
+      </div>
+      
+      <div class="factory-images-grid reveal reveal-right">
+        <div class="factory-img-card">
+          <img src="/images/factory_cnc.png" alt="CNC Machine Router at BVN Modulars Rajahmundry">
+        </div>
+        <div class="factory-img-card">
+          <img src="/images/factory_edge.png" alt="Edge Banding Machine at BVN Modulars Factory">
+        </div>
+        <div class="factory-img-card">
+          <img src="/images/factory_press.png" alt="Laminate Press Machine at BVN Modulars">
+        </div>
+        <div class="factory-img-card">
+          <img src="/images/factory_assembly.png" alt="Quality Control & Assembly Area at Factory">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. Process Timeline Section -->
+<section class="process-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2 class="section-title">Our Process Timeline</h2>
+    </div>
+    
+    <div class="timeline-list">
+      <div class="timeline-step reveal stagger-1">
+        <div class="step-number">1</div>
+        <h3>Free Consultation & Site Visit</h3>
+        <p>Designer visits your space, takes precise measurements, and understands your requirements and budget range.</p>
+      </div>
+      
+      <div class="timeline-step reveal stagger-2">
+        <div class="step-number">2</div>
+        <h3>3D Design Presentation</h3>
+        <p>Within 5–7 working days, we share a detailed 3D render of your space so you can visualize the result before making any payments.</p>
+      </div>
+      
+      <div class="timeline-step reveal stagger-3">
+        <div class="step-number">3</div>
+        <h3>Transparent Quotation</h3>
+        <p>You receive an itemized quote detailing materials, hardware, and installation. No hidden charges, revisions included before approval.</p>
+      </div>
+      
+      <div class="timeline-step reveal stagger-4">
+        <div class="step-number">4</div>
+        <h3>Factory Manufacturing</h3>
+        <p>Production begins in our CNC unit. Typical timeline is 15–25 working days depending on the project scope.</p>
+      </div>
+      
+      <div class="timeline-step reveal stagger-5">
+        <div class="step-number">5</div>
+        <h3>Professional Installation</h3>
+        <p>Our trained in-house team handles delivery, assembly, and finishing. We do not leave until every fitting is absolutely perfect.</p>
+      </div>
+      
+      <div class="timeline-step reveal stagger-6">
+        <div class="step-number">6</div>
+        <h3>Timeline & Project Updates</h3>
+        <p>Project timelines are estimated based on approved designs. Any timeline updates are communicated promptly and transparently.</p>
+      </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 3.5rem;" class="reveal">
+      <a href="https://wa.me/919999999999?text=Hi%20BVN%20Modulars!%20I'm%20ready%20to%20start%20my%20project.%20Let's%20chat." class="btn btn-primary" target="_blank" rel="noopener noreferrer">Start Your Project — Chat with Us &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Customer Reviews Section -->
+<section class="reviews-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2 class="section-title">Customer Testimonials</h2>
+    </div>
+    
+    <div class="testimonial-carousel-container reveal">
+      <button class="carousel-ctrl carousel-ctrl-prev" aria-label="Previous slide">&lt;</button>
+      <button class="carousel-ctrl carousel-ctrl-next" aria-label="Next slide">&gt;</button>
+      
+      <div class="testimonial-track">
+        <% testimonials.forEach(testimonial => { %>
+          <div class="testimonial-slide">
+            <div class="testimonial-card">
+              <div class="testimonial-text-side">
+                <div class="customer-info">
+                  <div class="customer-name"><%= testimonial.customerName %></div>
+                  <div class="customer-area"><%= testimonial.location %></div>
+                </div>
+                <div class="rating-stars">
+                  <% for(let i=0; i<testimonial.rating; i++) { %>★<% } %>
+                </div>
+                <p class="testimonial-quote">"<%= testimonial.text %>"</p>
+                <span class="testimonial-service-tag"><%= testimonial.serviceType %></span>
+              </div>
+              
+              <div class="testimonial-media-side">
+                <div class="testimonial-photos">
+                  <img src="<%= testimonial.customerPhoto %>" alt="<%= testimonial.customerName %> portrait" class="customer-photo">
+                  <img src="<%= testimonial.projectPhoto %>" alt="Completed modular project for <%= testimonial.customerName %>" class="project-photo-preview">
+                </div>
+                <% if(testimonial.videoEmbed) { %>
+                  <div class="video-embed-container">
+                    <iframe src="<%= testimonial.videoEmbed %>" allowfullscreen></iframe>
+                  </div>
+                <% } %>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+      
+      <div class="carousel-dots"></div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 3rem;" class="reveal">
+      <a href="/testimonials" class="btn btn-outline">Read More Testimonials &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- 8. Pricing Packages Section -->
+<section class="pricing-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2 class="section-title">Premium Pricing Packages</h2>
+      <p style="margin-top: 1rem; color: var(--secondary-walnut); font-weight: 600;">Pricing is subject to change based on custom selections. Display prices are starting rates.</p>
+    </div>
+    
+    <div class="pricing-grid">
+      <% pricing.forEach((pkg, idx) => { %>
+        <div class="pricing-card <%= pkg.isPopular ? 'popular' : '' %> reveal stagger-<%= (idx % 3) + 1 %>">
+          <% if(pkg.isPopular) { %>
+            <div class="popular-badge">Most Popular</div>
+          <% } %>
+          <div class="pricing-header">
+            <h3 class="package-name"><%= pkg.name %></h3>
+            <div class="package-price">Starting from <span>₹<%= pkg.startingPrice %></span> <%= pkg.priceUnit %></div>
+          </div>
+          <div class="pricing-body">
+            <ul class="pricing-features">
+              <% pkg.inclusions.forEach(inclusion => { %>
+                <li><%= inclusion %></li>
+              <% }) %>
+            </ul>
+          </div>
+          <div class="pricing-action">
+            <a href="https://wa.me/919999999999?text=Hi%20BVN%20Modulars!%20I'm%20interested%20in%20the%20<%= pkg.name %>." 
+               class="btn btn-primary" style="width: 100%;" target="_blank" rel="noopener noreferrer">Get This Package &rarr;</a>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+    
+    <div style="text-align: center; margin-top: 3.5rem;" class="reveal">
+      <a href="https://wa.me/919999999999?text=Hi%20BVN%20Modulars!%20I%20want%20to%20chat%20about%20your%20pricing%20packages." class="btn btn-outline" target="_blank" rel="noopener noreferrer">Chat with Us About Pricing Packages &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- 9. Brands & Materials Section -->
+<section class="brands-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2 class="section-title">We Use Only Trusted Brands & Premium Materials</h2>
+    </div>
+    <p class="brands-copy reveal">
+      We prioritize durability over cheap pricing. Our factory modular units are built with structural-grade water-resistant marine plywood and fitted with lifetime-warranty hardware from leading global manufacturers.
+    </p>
+    
+    <div class="brands-strip reveal reveal-scale">
+      <div class="brand-logo-wrapper">
+        <img src="/images/brand_hettich.svg" alt="Hettich Hardware Logo" class="brand-logo">
+      </div>
+      <div class="brand-logo-wrapper">
+        <img src="/images/brand_hafele.svg" alt="Hafele Fittings Logo" class="brand-logo">
+      </div>
+      <div class="brand-logo-wrapper">
+        <img src="/images/brand_blum.svg" alt="Blum Drawer Slides Logo" class="brand-logo">
+      </div>
+      <div class="brand-logo-wrapper">
+        <img src="/images/brand_greenlam.svg" alt="Greenlam Laminates Logo" class="brand-logo">
+      </div>
+      <div class="brand-logo-wrapper">
+        <img src="/images/brand_centuryply.svg" alt="CenturyPly Plywood Logo" class="brand-logo">
+      </div>
+      <div class="brand-logo-wrapper">
+        <img src="/images/brand_merino.svg" alt="Merino Laminates Logo" class="brand-logo">
+      </div>
+      <div class="brand-logo-wrapper">
+        <img src="/images/brand_virgo.svg" alt="Virgo Laminates Logo" class="brand-logo">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10. Contact Form Section -->
+<section class="contact-section" id="contact-form">
+  <div class="container">
+    <div class="contact-section-grid">
+      <!-- Contact Info Side (Left Column, animated) -->
+      <div class="contact-info-side reveal reveal-left">
+        <div>
+          <div class="contact-details-list">
+            <div class="contact-detail-item">
+              <div class="contact-detail-icon">📞</div>
+              <div class="contact-detail-text">
+                <h4>Call Us</h4>
+                <p>+91 9000333633</p>
+                <p>+91 7893393311</p>
+              </div>
+            </div>
+            
+            <div class="contact-detail-item">
+              <div class="contact-detail-icon">✉️</div>
+              <div class="contact-detail-text">
+                <h4>Email Support</h4>
+                <p>info@bvnmodulars.com</p>
+              </div>
+            </div>
+            
+            <div class="contact-detail-item">
+              <div class="contact-detail-icon">🕒</div>
+              <div class="contact-detail-text">
+                <h4>Working Hours</h4>
+                <p>Mon - Sat: 9:00 AM - 8:00 PM (Sunday Closed)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Google Maps Embed of Rajahmundry Area -->
+        <div class="map-embed-container">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3814.9448323526794!2d81.8110899!3d17.026375899999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a37a258bc0def87%3A0xa70c706e072e337!2sBVN%20modulars!5e0!3m2!1sen!2sin!4v1781945759448!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+
+      <!-- Contact Form Side (Right Column, animated, premium layout) -->
+      <div class="contact-form-side reveal reveal-right" style="border-top: 4px solid var(--secondary-walnut); box-shadow: var(--shadow-premium);">
+        <h3>Send An Enquiry</h3>
+        
+        <% if (typeof success !== 'undefined' && success) { %>
+          <div class="alert alert-success">Your enquiry was submitted successfully! We will get in touch with you shortly.</div>
+        <% } %>
+        
+        <form action="/enquire" method="POST">
+          <div class="form-group">
+            <label for="name">Your Name *</label>
+            <input type="text" id="name" name="name" class="form-control" placeholder="Enter your full name" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="phone">Phone Number *</label>
+            <!-- inputmode="numeric" triggers numeric keyboard on mobile -->
+            <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter 10-digit mobile number" pattern="[0-9]{10}" inputmode="numeric" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="city">City / Area *</label>
+            <input type="text" id="city" name="city" class="form-control" placeholder="e.g. Innispeta, Rajahmundry" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="service">Service Interested In *</label>
+            <select id="service" name="service" class="form-control" required>
+              <option value="" disabled selected>Select a service</option>
+              <option value="Modular Kitchen">Modular Kitchen</option>
+              <option value="Wardrobe & Storage">Wardrobe & Storage</option>
+              <option value="TV Unit & Louvers">TV Unit & Louvers</option>
+              <option value="Bedroom Furniture">Bedroom Furniture</option>
+              <option value="Crockery Unit">Crockery Unit</option>
+              <option value="Office Interiors">Office Interiors</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Message (Optional)</label>
+            <textarea id="message" name="message" class="form-control" placeholder="Tell us more about your space..."></textarea>
+          </div>
+          
+          <button type="submit" class="btn form-submit-btn">Send My Enquiry</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Project Image Lightbox Container -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close">&times;</button>
+  <div class="lightbox-content-wrapper">
+    <img src="" alt="Enlarged Project Photo" class="lightbox-img">
+    <div class="lightbox-details">
+      <h4 class="lightbox-title"></h4>
+      <span class="lightbox-category"></span>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>
