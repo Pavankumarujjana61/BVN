@@ -407,44 +407,6 @@
   </div>
 </section>
 
-<!-- 8. Pricing Packages Section -->
-<section class="pricing-section">
-  <div class="container">
-    <div class="section-header reveal">
-      <h2 class="section-title">Premium Pricing Packages</h2>
-      <p style="margin-top: 1rem; color: var(--secondary-walnut); font-weight: 600;">Pricing is subject to change based on custom selections. Display prices are starting rates.</p>
-    </div>
-    
-    <div class="pricing-grid">
-      <% pricing.forEach((pkg, idx) => { %>
-        <div class="pricing-card <%= pkg.isPopular ? 'popular' : '' %> reveal stagger-<%= (idx % 3) + 1 %>">
-          <% if(pkg.isPopular) { %>
-            <div class="popular-badge">Most Popular</div>
-          <% } %>
-          <div class="pricing-header">
-            <h3 class="package-name"><%= pkg.name %></h3>
-            <div class="package-price">Starting from <span>₹<%= pkg.startingPrice %></span> <%= pkg.priceUnit %></div>
-          </div>
-          <div class="pricing-body">
-            <ul class="pricing-features">
-              <% pkg.inclusions.forEach(inclusion => { %>
-                <li><%= inclusion %></li>
-              <% }) %>
-            </ul>
-          </div>
-          <div class="pricing-action">
-            <a href="https://wa.me/919999999999?text=Hi%20BVN%20Modulars!%20I'm%20interested%20in%20the%20<%= pkg.name %>." 
-               class="btn btn-primary" style="width: 100%;" target="_blank" rel="noopener noreferrer">Get This Package &rarr;</a>
-          </div>
-        </div>
-      <% }) %>
-    </div>
-    
-    <div style="text-align: center; margin-top: 3.5rem;" class="reveal">
-      <a href="https://wa.me/919999999999?text=Hi%20BVN%20Modulars!%20I%20want%20to%20chat%20about%20your%20pricing%20packages." class="btn btn-outline" target="_blank" rel="noopener noreferrer">Chat with Us About Pricing Packages &rarr;</a>
-    </div>
-  </div>
-</section>
 
 <!-- 9. Brands & Materials Section -->
 <section class="brands-section">

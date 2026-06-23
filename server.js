@@ -66,7 +66,6 @@ app.get('/', async (req, res) => {
   try {
     const projects = await db.getProjects();
     const testimonials = await db.getTestimonials();
-    const pricing = await db.getPricing();
     const banners = await db.getBanners();
     
     // Show first 6 projects as featured
@@ -79,7 +78,6 @@ app.get('/', async (req, res) => {
       metaDescription: 'Get premium factory-made modular kitchens, wardrobes, and furniture solutions in Rajahmundry. Designed in 3D, built in our own factory with 0.1mm CNC precision.',
       featuredProjects,
       testimonials,
-      pricing,
       banners,
       success: req.query.success === 'true'
     });
@@ -538,43 +536,6 @@ app.post('/admin/testimonials/delete/:id', requireAdmin, async (req, res) => {
   }
 });
 
-// Manage Pricing
-app.get('/admin/pricing', requireAdmin, async (req, res) => {
-  try {
-    const pricing = await db.getPricing();
-    res.render('admin/pricing', {
-      pricing,
-      success: req.query.success ? 'Pricing package updated successfully' : null
-    });
-  } catch (error) {
-    console.error('Error listing admin pricing:', error);
-    res.status(500).send('Internal Server Error');
-  }
-});
-
-// Update Pricing Action
-app.post('/admin/pricing/update/:id', requireAdmin, async (req, res) => {
-  try {
-    const { startingPrice, isPopular, inclusions } = req.body;
-    const pricing = await db.getPricing();
-    
-    const index = pricing.findIndex(p => p.id === req.params.id);
-    if (index >= 0) {
-      pricing[index].startingPrice = startingPrice;
-      pricing[index].isPopular = isPopular === 'true';
-      
-      // Split inclusions text into array
-      pricing[index].inclusions = inclusions.split('\n').map(line => line.trim()).filter(Boolean);
-      
-      await db.savePricing(pricing);
-    }
-    
-    res.redirect('/admin/pricing?success=true');
-  } catch (error) {
-    console.error('Error updating admin pricing:', error);
-    res.status(500).send('Internal Server Error');
-  }
-});
 
 // Manage Blogs
 app.get('/admin/blogs', requireAdmin, async (req, res) => {
